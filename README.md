@@ -38,12 +38,26 @@ in [src/lib/index.ts](/src/lib/index.ts) (the imported path)
 and [fakepackage/package.json](/fakepackage/package.json) (the `"exports"` key),
 then run `npm run repro` again and see the `any` changed in [dist/index.d.ts](/dist/index.d.ts).
 
+```diff
+- "./broken_when_different_name2": {
++ "./broken_when_different_name": {
+- from 'fakepackage/broken_when_different_name2'
++ from 'fakepackage/broken_when_different_name'
+```
+
 To see the second generate correctly, add `dist/`
 in [src/lib/index.ts](/src/lib/index.ts) (the imported path)
 and [fakepackage/package.json](/fakepackage/package.json) (the `"exports"` key),
 then run `npm run repro` again and see the `any` changed in [dist/index.d.ts](/dist/index.d.ts).
 
-Instructions to see these imports work are also in [src/lib/index.ts](/src/lib/index.ts).
+```diff
+- "./broken_when_different_path": {
++ "./dist/broken_when_different_path": {
+- from 'fakepackage/broken_when_different_path'
++ from 'fakepackage/dist/broken_when_different_path'
+```
+
+Instructions to see these published types work are also in [src/lib/index.ts](/src/lib/index.ts).
 
 ## Next steps
 

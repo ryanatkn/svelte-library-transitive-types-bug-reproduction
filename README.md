@@ -1,7 +1,7 @@
 # svelte-library-transitive-types-bug-reproduction
 
 This is a reproduction of types generating incorrectly
-with `svelte-package` for transitive dependencies.
+with `svelte-package` for dependencies that get re-exported.
 It appears that mismatches between file names/paths
 and package.json `exports` aliases causes this.
 

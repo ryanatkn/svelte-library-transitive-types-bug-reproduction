@@ -33,6 +33,8 @@ Expected:
 + export declare const broken_when_different_path_exported: "broken_when_different_path";
 ```
 
+The same `any` type appears for other identifiers like classes, functions, instances, etc.
+
 ## Correctly generating the types
 
 To see the first of the `any`s generate correctly, remove the `2`

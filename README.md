@@ -14,7 +14,8 @@ with TypeScript and Svelte 4 - the same problem happens with Svelte 5)
 npm run repro # copies `./fakepackage` to `node_modules` and runs `npm run package`
 ```
 
-2. Inspect [dist/index.d.ts](/dist/index.d.ts):
+2. Inspect [dist/index.d.ts](/dist/index.d.ts) 
+which is generated from [src/lib/index.ts](/src/lib/index.ts):
 
 ```ts
 // index.d.ts

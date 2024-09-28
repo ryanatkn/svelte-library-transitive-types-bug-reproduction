@@ -1,0 +1,1 @@
+export declare const broken_when_different_name: 'broken_when_different_name';

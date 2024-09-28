@@ -2,6 +2,8 @@
 	"name": "svelte-library-transitive-types-bug-reproduction",
 	"version": "0.0.1",
 	"scripts": {
+		"repro": "npm run setup && npm run package",
+		"setup": "cp -rf fakepackage node_modules/",
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
 		"preview": "vite preview",

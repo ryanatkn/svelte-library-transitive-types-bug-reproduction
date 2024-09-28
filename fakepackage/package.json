@@ -1,0 +1,18 @@
+{
+  "name": "works_index",
+  "version": "0.0.1",
+  "exports": {
+    "./works_when_same_name": {
+      "types": "./works_when_same_name.d.ts",
+      "default": "./works_when_same_name.js"
+    },
+    "./broken_when_different_name2": {
+      "types": "./broken_when_different_name.d.ts",
+      "default": "./broken_when_different_name.js"
+    },
+    "./broken_when_different_path": {
+      "types": "./dist/broken_when_different_path.d.ts",
+      "default": "./dist/broken_when_different_path.js"
+    }
+  }
+}

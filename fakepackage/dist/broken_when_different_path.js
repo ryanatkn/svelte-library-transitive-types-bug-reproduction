@@ -1,0 +1,1 @@
+export const broken_when_different_path = 'broken_when_different_path';

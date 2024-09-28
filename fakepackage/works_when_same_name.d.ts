@@ -1,0 +1,1 @@
+export declare const works_when_same_name: 'works_when_same_name';

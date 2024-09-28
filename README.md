@@ -1,58 +1,51 @@
-# create-svelte
+# packaged-transitive-types-reproduction
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This is a reproduction of types generating incorrectly
+with `svelte-package` for transitive dependencies.
+It appears that mismatches between file names/paths
+and package.json `exports` aliases causes this.
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+(this is a fresh install of a `npm create svelte@latest` library project -
+the same problem happens with Svelte 5)
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. Run this command: (does not work on Windows, the script is simple to do manually)
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+npm run repro # copies `./fakepackage` to `node_modules` and runs `npm run package`
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+2. Inspect [dist/index.d.ts](/dist/index.d.ts):
 
-## Building
-
-To build your library:
-
-```bash
-npm run package
+```ts
+// index.d.ts
+export declare const works_when_same_name_exported: "works_when_same_name";
+export declare const broken_when_different_name_exported: any;
+export declare const broken_when_different_path_exported: any;
 ```
 
-To create a production version of your showcase app:
+Expected:
 
-```bash
-npm run build
+```diff
+- export declare const broken_when_different_name_exported: any;
+- export declare const broken_when_different_path_exported: any;
++ export declare const broken_when_different_name_exported: "broken_when_different_name";
++ export declare const broken_when_different_path_exported: "broken_when_different_path";
 ```
 
-You can preview the production build with `npm run preview`.
+To see the first of the `any`s generate correctly, remove the `2`
+in [src/lib/index.ts](/src/lib/index.ts) (the imported path)
+and [fakepackage/package.json](/fakepackage/package.json) (the `"exports"` key),
+then run `npm run repro` again and see the `any` changed in [dist/index.d.ts](/dist/index.d.ts).
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+To see the second generate correctly, add `dist/`
+in [src/lib/index.ts](/src/lib/index.ts) (the imported path)
+and [fakepackage/package.json](/fakepackage/package.json) (the `"exports"` key),
+then run `npm run repro` again and see the `any` changed in [dist/index.d.ts](/dist/index.d.ts).
 
-## Publishing
+Instructions to see these imports work are also in [src/lib/index.ts](/src/lib/index.ts).
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+## Next steps
 
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
-```
+This may be a problem with [`dts-buddy`](https://github.com/Rich-Harris/dts-buddy)
+or how SvelteKit is using it,
+one next step is trying to reproduce directly with `dts-buddy`.

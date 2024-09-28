@@ -18,7 +18,7 @@ npm run repro # copies `./fakepackage` to `node_modules` and runs `npm run packa
 which is generated from [src/lib/index.ts](/src/lib/index.ts):
 
 ```ts
-// index.d.ts
+// dist/index.d.ts
 export declare const works_when_same_name_exported: "works_when_same_name";
 export declare const broken_when_different_name_exported: any;
 export declare const broken_when_different_path_exported: any;
@@ -39,8 +39,10 @@ and [fakepackage/package.json](/fakepackage/package.json) (the `"exports"` key),
 then run `npm run repro` again and see the `any` changed in [dist/index.d.ts](/dist/index.d.ts).
 
 ```diff
+// fakepackage/package.json
 - "./broken_when_different_name2": {
 + "./broken_when_different_name": {
+// src/lib/index.ts
 - from 'fakepackage/broken_when_different_name2'
 + from 'fakepackage/broken_when_different_name'
 ```
@@ -51,8 +53,10 @@ and [fakepackage/package.json](/fakepackage/package.json) (the `"exports"` key),
 then run `npm run repro` again and see the `any` changed in [dist/index.d.ts](/dist/index.d.ts).
 
 ```diff
+// fakepackage/package.json
 - "./broken_when_different_path": {
 + "./dist/broken_when_different_path": {
+// src/lib/index.ts
 - from 'fakepackage/broken_when_different_path'
 + from 'fakepackage/dist/broken_when_different_path'
 ```

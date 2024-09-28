@@ -44,6 +44,9 @@ then run `npm run repro` again and see the `any` changed in [dist/index.d.ts](/d
 // fakepackage/package.json
 - "./broken_when_different_name2": {
 + "./broken_when_different_name": {
+```
+
+```diff
 // src/lib/index.ts
 - from 'fakepackage/broken_when_different_name2'
 + from 'fakepackage/broken_when_different_name'
@@ -58,6 +61,9 @@ then run `npm run repro` again and see the `any` changed in [dist/index.d.ts](/d
 // fakepackage/package.json
 - "./broken_when_different_path": {
 + "./dist/broken_when_different_path": {
+```
+
+```diff
 // src/lib/index.ts
 - from 'fakepackage/broken_when_different_path'
 + from 'fakepackage/dist/broken_when_different_path'

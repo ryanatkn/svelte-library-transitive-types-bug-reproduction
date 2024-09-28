@@ -1,4 +1,4 @@
-# packaged-transitive-types-bug-reproduction
+# svelte-library-transitive-types-bug-reproduction
 
 This is a reproduction of types generating incorrectly
 with `svelte-package` for transitive dependencies.

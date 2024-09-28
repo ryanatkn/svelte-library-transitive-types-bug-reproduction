@@ -33,6 +33,8 @@ Expected:
 + export declare const broken_when_different_path_exported: "broken_when_different_path";
 ```
 
+## Correctly generating the types
+
 To see the first of the `any`s generate correctly, remove the `2`
 in [src/lib/index.ts](/src/lib/index.ts) (the imported path)
 and [fakepackage/package.json](/fakepackage/package.json) (the `"exports"` key),

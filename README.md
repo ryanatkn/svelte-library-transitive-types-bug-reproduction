@@ -6,7 +6,8 @@ It appears that mismatches between file names/paths
 and package.json `exports` aliases causes this.
 
 (this is a fresh install of a `npm create svelte@latest` library project
-with TypeScript and Svelte 4 - the same problem happens with Svelte 5)
+with TypeScript and Svelte 4 - the same problem happens with Svelte 5
+and using `tsc` manually outputs types as expected)
 
 1. Run this command: (does not work on Windows, the script is simple to do manually)
 

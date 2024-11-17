@@ -1,5 +1,5 @@
 {
-  "name": "works_index",
+  "name": "fakepackage",
   "version": "0.0.1",
   "exports": {
     "./works_when_same_name": {

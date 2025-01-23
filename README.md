@@ -6,10 +6,10 @@ It appears that mismatches between file names/paths
 and package.json `exports` aliases causes this.
 
 (this is a fresh install of a `npm create svelte@latest` library project
-with TypeScript and Svelte 4 - the same problem happens with Svelte 5
-and using `tsc` manually outputs types as expected - 
+with TypeScript and Svelte 5 - the same problem happens with Svelte 4,
+and using `tsc` manually outputs the types as expected -
 I last verified that the problem persists with all deps upgraded at
-`@sveltejs/kit@2.8.1` and `svelte@5.2.2`)
+`@sveltejs/kit@2.16.1`, `@sveltejs/package@2.3.9`, and `svelte@5.19.2`)
 
 1. Run this command: (does not work on Windows, the script is simple to do manually)
 
